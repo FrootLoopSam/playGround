@@ -17,11 +17,10 @@ export class UsersService {
         return [...this.users];
     }
 
-    createUser(firstName: string, lastName: string, email: string, phoneNumber: number): User {
-        // update to real id when switching to db
+    createUser(user: User): User {
+        // TODO: update to real id when switching to db
         const id = Math.random();
-        const user = new User(firstName, lastName, email, phoneNumber, id);
-        this.users.push(user);
-        return user;
+        this.users.push({...user, id});
+        return {...user, id};
     }
 }

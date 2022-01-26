@@ -1,5 +1,5 @@
 import { User } from '@lupe-time/api-interfaces';
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -19,12 +19,7 @@ export class UsersController {
     }
 
     @Post('user') 
-    createUser(
-        @Body('firstName') firstName: string,
-        @Body('lastName') lastName: string,
-        @Body('email') email: string,
-        @Body('phoneNumber') phoneNumber: number,
-    ): User {
-        return this.usersService.createUser(firstName, lastName, email, phoneNumber);
+    createUser(@Body() user: User) {
+        return this.usersService.createUser(user);
     }
 }
